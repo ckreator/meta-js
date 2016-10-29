@@ -14,3 +14,13 @@ function mustache(s, context) {
 console.log(mustache("Hello, {{   name        }}. How are you?", {
     name: "Kristian"
 }))
+
+
+function mus(s, context) {
+    return s.replace(/({{)([^(}}]+)(}})/g, (match) => {return context[match.split(/\{+|\}+/)[1].replace(/\s+/g, "")] || ''});
+}
+
+console.log(mus("Hello {{name}}, do you live in {{  location   					}}?", {
+    name: "Kristian",
+    location: "Vienna"
+}))
